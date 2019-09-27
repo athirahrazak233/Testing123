@@ -1,0 +1,37 @@
+# WQD7005 - Data Mining
+## Assignment 1 - Milestone 1 
+
+
+# get current working directory
+import os
+os.getcwd()
+
+# load necessary modules
+import numpy as np
+import pandas as pd
+import pandas_datareader.data as web
+
+# define stocks data download start date and end date
+
+start = '2019-06-01'
+end = '2019-09-25'
+
+# define stocks code for Active counter only.
+stocks_query = pd.read_csv('KLSE_main_stocks_RHBTRADES_TopVolume_Code.csv', index_col=[0])
+
+# read stocks data from Yahoo Finance
+stocks = web.DataReader(stocks_query, data_source='yahoo')
+
+# Check head stocks data
+stocks.head()
+
+# view tail stocks data
+stocks.tail()
+
+type(stocks)
+
+stocks.info()
+
+# save stocks data to csv format for further data preprocessing
+
+stocks.to_csv('klse-main-market-stock-data.csv')
